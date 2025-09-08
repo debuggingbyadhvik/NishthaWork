@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishtha Sharma - Portfolio | Sales & Operations Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f4f4f5;
+            --bg-card: rgba(255, 255, 255, 0.75);
+            --text-primary: #18181b;
+            --text-secondary: #52525b;
+            --accent-primary: #b45309; /* A deeper, richer amber/gold */
+            --accent-secondary: #ca8a04;
+            --border-color: rgba(228, 228, 231, 0.6);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+        }
+        
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-link.active {
+            color: var(--accent-primary) !important;
+            border-color: var(--accent-primary) !important;
+        }
+        
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .mini-bar {
+            background-image: linear-gradient(to right, var(--accent-secondary), var(--accent-primary));
+            height: 100%;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav id="navbar" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-[--border-color]">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold text-gray-900">Nishtha Sharma</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#profile" class="nav-link text-gray-600 hover:text-black px-3 py-2 text-sm font-medium border-b-2 border-transparent transition-all duration-300">Profile</a>
+                        <a href="#skills" class="nav-link text-gray-600 hover:text-black px-3 py-2 text-sm font-medium border-b-2 border-transparent transition-all duration-300">Skills</a>
+                        <a href="#experience" class="nav-link text-gray-600 hover:text-black px-3 py-2 text-sm font-medium border-b-2 border-transparent transition-all duration-300">Experience</a>
+                        <a href="#projects" class="nav-link text-gray-600 hover:text-black px-3 py-2 text-sm font-medium border-b-2 border-transparent transition-all duration-300">Projects</a>
+                        <a href="#testimonials" class="nav-link text-gray-600 hover:text-black px-3 py-2 text-sm font-medium border-b-2 border-transparent transition-all duration-300">Testimonials</a>
+                        <a href="#contact" class="nav-link text-gray-600 hover:text-black px-3 py-2 text-sm font-medium border-b-2 border-transparent transition-all duration-300">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="profile" class="py-24 md:py-32">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="reveal text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 leading-tight">Sales & Operations Leader</h1>
+                    <p class="mt-4 text-lg md:text-xl text-[--text-secondary] max-w-3xl mx-auto">
+                        A dynamic professional with extensive experience in driving revenue, managing international teams, and optimizing business operations . I am committed to collaborating with my team to drive impactful results, with a focus on long-term growth and innovation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Core Competencies</h2>
+                    <p class="mt-4 text-lg text-[--text-secondary]">A quantitative look at my professional capabilities.</p>
+                </div>
+                <div class="mt-16" style="height: 500px;">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Professional Experience</h2>
+                    <p class="mt-4 text-lg text-[--text-secondary]">My career journey and key accomplishments.</p>
+                </div>
+                <div class="mt-16 space-y-12">
+                    <div class="reveal glass-card card-hover p-8 rounded-lg shadow-lg">
+                        <div class="flex justify-between items-start flex-wrap gap-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Sales Manager</h3>
+                                <p class="text-md font-medium text-[--accent-primary]">Moxi Outsourcing</p>
+                            </div>
+                          <p class="text-sm text-[--text-secondary] text-left sm:text-right">May 2023 – Present</p>
+                        </div>
+                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700">
+                            <li>Managed Australian client accounts, handled solar panel inquiries, and delivered customized energy solutions      </li>
+                            <li>Directed and supported an Australian team, leading daily operations for solar and travel projects   .</li>
+                            <li>Led cross-functional teams and international client accounts to build strong partnerships   .</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-[--border-color]">
+                            <h4 class="font-semibold mb-3">Key Metrics</h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-center">
+                                    <span class="w-40 shrink-0">International Team Leadership</span>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5 ml-4"><div class="mini-bar" style="width: 90%"></div></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-40 shrink-0">Client Relationship Mgmt</span>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5 ml-4"><div class="mini-bar" style="width: 95%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="reveal glass-card card-hover p-8 rounded-lg shadow-lg">
+                         <div class="flex justify-between items-start flex-wrap gap-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Operation Manager</h3>
+                                <p class="text-md font-medium text-[--accent-primary]">Diva Beauty Nation     </p>
+                            </div>
+                            <p class="text-sm text-[--text-secondary] text-left sm:text-right">Nov 2020 – Mar 2023   48]</p>
+                        </div>
+                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700">
+                           <li>Directed online sales, India MART operations, and B2B campaigns to boost revenue  49].</li>
+                           <li>Oversaw all sales operations, improving process efficiency and team performance  50].</li>
+                           <li>Implemented successful lead generation strategies across digital channels  51].</li>
+                        </ul>
+                         <div class="mt-6 pt-4 border-t border-[--border-color]">
+                            <h4 class="font-semibold mb-3">Key Metrics</h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-center">
+                                    <span class="w-40 shrink-0">Revenue Growth</span>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5 ml-4"><div class="mini-bar" style="width: 85%"></div></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-40 shrink-0">Process Efficiency</span>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5 ml-4"><div class="mini-bar" style="width: 90%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal glass-card card-hover p-8 rounded-lg shadow-lg">
+                         <div class="flex justify-between items-start flex-wrap gap-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Sales Development Representative</h3>
+                                <p class="text-md font-medium text-[--accent-primary]">Cosmic Essence     </p>
+                            </div>
+                            <p class="text-sm text-[--text-secondary] text-left sm:text-right">Jul 2019 – Nov 2022   53]</p>
+                        </div>
+                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700">
+                            <li>Managed social media platforms and handled buyer inquiries   .</li>
+                            <li>Generated and qualified B2B and e-commerce leads, converting opportunities into closed deals   .</li>
+                            <li>Conducted market research and outbound prospecting to secure qualified leads  56].</li>
+                        </ul>
+                         <div class="mt-6 pt-4 border-t border-[--border-color]">
+                            <h4 class="font-semibold mb-3">Key Metrics</h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-center">
+                                    <span class="w-40 shrink-0">Lead Generation</span>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5 ml-4"><div class="mini-bar" style="width: 95%"></div></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-40 shrink-0">Lead Conversion Rate</span>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5 ml-4"><div class="mini-bar" style="width: 80%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Key Projects & Initiatives</h2>
+                    <p class="mt-4 text-lg text-[--text-secondary]">Spotlight on impactful, results-driven work.</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="reveal card-hover bg-[--bg-main] p-8 rounded-lg border border-[--border-color]">
+                        <h3 class="text-lg font-bold">Australian Market Client Management</h3>
+                        <p class="mt-2 text-sm text-[--text-secondary]">Developed and managed a portfolio of Australian clients for solar panel solutions, leading to strong international partnerships   .</p>
+                    </div>
+                    <div class="reveal card-hover bg-[--bg-main] p-8 rounded-lg border border-[--border-color]">
+                        <h3 class="text-lg font-bold">Digital Sales Transformation</h3>
+                        <p class="mt-2 text-sm text-[--text-secondary]">Led the strategy for online sales channels and B2B campaigns, significantly boosting revenue and improving team efficiency at Diva Beauty Nation   .</p>
+                    </div>
+                    <div class="reveal card-hover bg-[--bg-main] p-8 rounded-lg border border-[--border-color]">
+                        <h3 class="text-lg font-bold">B2B Lead Generation Engine</h3>
+                        <p class="mt-2 text-sm text-[--text-secondary]">Built a lead generation pipeline at Cosmic Essence by leveraging social media, market research, and outbound prospecting to convert opportunities   .</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonials" class="py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">What Others Say</h2>
+                <div class="mt-12">
+                    <div class="glass-card p-8 rounded-lg shadow-lg relative">
+                        <svg class="absolute top-4 left-4 h-8 w-8 text-[--accent-primary] opacity-20" fill="currentColor" viewBox="0 0 32 32"><path d="M9.333 22.667h-5.333v-10.667h10.667v10.667h-5.333c0 2.94-2.387 5.333-5.333 5.333zM28 22.667h-5.333v-10.667h10.667v10.667h-5.333c0 2.94-2.387 5.333-5.333 5.333z"></path></svg>
+                        <p class="text-xl italic text-gray-700">"Nishtha's leadership and strategic vision were instrumental in our international expansion. She is a dedicated and results-oriented professional who excels at building both teams and client relationships."</p>
+                        <p class="mt-6 font-bold text-gray-900">Jane Doe</p>
+                        <p class="text-sm text-[--text-secondary]">Former Director, Moxi Outsourcing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact" class="bg-gray-900 text-white py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+                <h2 class="text-3xl font-bold tracking-tight">Let's Connect</h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">I'm actively exploring new opportunities where I can leverage my experience to drive growth. Let's discuss how I can contribute to your team's success.</p>
+                <div class="mt-8 flex justify-center items-center flex-wrap gap-4">
+                     <a href="mailto:nishtha.sharma.work@email.com" class="inline-block bg-gray-800 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">
+                        nishthasharma@gmail.com
+                    </a>
+                    <a href="#" class="inline-block bg-[--accent-primary] text-white font-bold py-3 px-6 rounded-lg hover:bg-[--accent-secondary] transition-colors">
+                         <a href="Nishtha-Sharma-Resume.pdf" download="Nishtha_Sharma_Resume_2025.pdf" class="inline-block bg-[--accent-primary] text-white font-bold py-3 px-6 rounded-lg hover:bg-[--accent-secondary] transition-colors">
+    Download Resume (PDF)
+</a>
+                    </a>
+                </div>
+                 <p class="mt-10 text-sm text-gray-400">Based in Faridabad, Haryana, India</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            /**
+             * Initializes the Chart.js skills bar chart.
+             * This function is wrapped in a try-catch block to prevent errors
+             * if the Chart.js library or the canvas element fails to load.
+             */
+            function initializeChart() {
+                try {
+                    const skillsCanvas = document.getElementById('skillsChart');
+                    if (!skillsCanvas) {
+                        console.error("Skills chart canvas element not found.");
+                        return;
+                    }
+
+                    const skillsCtx = document.getElementById('skillsChart').getContext('2d');
+new Chart(skillsCtx, {
+    type: 'bar',
+    data: {
+        labels: [
+            "Sales Strategy & Revenue Growth", 
+            "Cross-Functional Team Leadership",
+            "Operational Excellence", 
+            "Strategic Business Expansion",
+            "Customer Relationship Management (CRM)",
+            "Marketing & Business Development",
+            "Supplier Negotiation"
+        ],
+        datasets: [{
+            label: 'Proficiency',
+            data: [95, 92, 88, 90, 94, 85, 87],
+            backgroundColor: 'rgba(180, 83, 9, 0.7)',
+            borderColor: 'rgba(180, 83, 9, 1)',
+            borderWidth: 1,
+            borderRadius: 4,
+            borderSkipped: false,
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { beginAtZero: true, max: 100, grid: { display: false }, ticks: { color: '#52525b' } },
+            y: { grid: { color: '#e4e4e7' }, ticks: { color: '#18181b' } }
+        }
+    }
+});
+                } catch (e) {
+                    console.error("Error initializing chart:", e);
+                }
+            }
+
+            /**
+             * Initializes the Intersection Observer for scroll-triggered animations.
+             * Elements with the 'reveal' class will fade in as they enter the viewport.
+             */
+            function initializeScrollAnimations() {
+                const revealElements = document.querySelectorAll('.reveal');
+                if (revealElements.length === 0) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                revealElements.forEach(el => observer.observe(el));
+            }
+
+            /**
+             * Handles active state highlighting for navigation links on scroll.
+             */
+            function initializeNavHighlighting() {
+                const navLinks = document.querySelectorAll('.nav-link');
+                const sections = document.querySelectorAll('main section');
+                const navHeight = document.getElementById('navbar')?.offsetHeight || 64;
+                if (navLinks.length === 0 || sections.length === 0) return;
+
+                window.addEventListener('scroll', () => {
+                    let current = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop - navHeight - 100;
+                        if (window.scrollY >= sectionTop) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href')?.substring(1) === current) {
+                            link.classList.add('active');
+                        }
+                    });
+                }, { passive: true });
+            }
+
+            // Initialize all features
+            initializeChart();
+            initializeScrollAnimations();
+            initializeNavHighlighting();
+        });
+    </script>
+</body>
+</html>
